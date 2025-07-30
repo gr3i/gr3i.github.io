@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dozby</title>
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
 
   <style>
     * {
@@ -99,7 +101,7 @@
     }
 
     #nameDisplay {
-      font-size: 2.5rem;
+      font-size: 2.8rem;
       font-weight: 600;
       transition: all 0.5s ease-in-out;
     }
@@ -135,6 +137,7 @@
   <script>
     const terminal = document.getElementById('terminal');
     const mainContent = document.getElementById('mainContent');
+    const nameEl = document.getElementById('nameDisplay');
     const text = 'Loading...';
     let index = 0;
 
@@ -147,30 +150,18 @@
         setTimeout(() => {
           terminal.style.display = 'none';
           mainContent.style.display = 'flex';
-          morphName();
+          startGSAPMorph();
         }, 1000);
       }
     }
 
-    function morphName() {
-      const nameEl = document.getElementById('nameDisplay');
-      const steps = [
-        'Zbyněk Dohnálek',
-        'Zbyněk D.',
-        'Zby Dohnálek',
-        'Dozby'
-      ];
-      let step = 0;
-
-      const nextStep = () => {
-        if (step < steps.length) {
-          nameEl.textContent = steps[step];
-          step++;
-          setTimeout(nextStep, 1000);
-        }
-      };
-
-      nextStep();
+    function startGSAPMorph() {
+      gsap.registerPlugin(TextPlugin);
+      const timeline = gsap.timeline({ repeat: 0 });
+      timeline.to(nameEl, { duration: 1, text: "Zbyněk Dohnálek" })
+              .to(nameEl, { duration: 1, text: "Zbyněk D." }, "+=1")
+              .to(nameEl, { duration: 1, text: "Zby Dohnálek" }, "+=1")
+              .to(nameEl, { duration: 1.2, text: "Dozby" }, "+=1");
     }
 
     window.onload = typeWriter;
