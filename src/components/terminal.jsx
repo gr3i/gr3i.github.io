@@ -11,7 +11,7 @@ const lines = [
   "Type `explore` to continue..."
 ];
 
-export default function TerminalHero() {
+	export default function Termina() {
   const [displayedLines, setDisplayedLines] = useState([]);
 
   useEffect(() => {

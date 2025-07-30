@@ -1,9 +1,9 @@
-import TerminalHero from "./components/terminal";
+import Terminal from "./components/terminal";
 
 function App() {
   return (
     <div className="App">
-      <TerminalHero />
+      <Terminal />
     </div>
   );
 }
