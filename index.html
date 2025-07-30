@@ -97,6 +97,12 @@
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
+
+    #nameDisplay {
+      font-size: 2.5rem;
+      font-weight: 600;
+      transition: all 0.5s ease-in-out;
+    }
   </style>
 </head>
 <body>
@@ -110,14 +116,14 @@
     </div>
 
     <div class="profile">
-      <h1>Hi, I'm Dozby</h1>
+      <h1 id="nameDisplay"></h1>
       <img src="images/pfp.png" alt="Dozby Profile Picture">
     </div>
 
     <div class="articles" id="articles">
       <div class="article">
         <h2>Projects</h2>
-        <p> If you want to see my projects I did at school or what I do in my freetime go on my <a href="https://github.com/gr3i" target="_blank">github</a></p>
+        <p>If you want to see my projects I did at school or what I do in my freetime go on my <a href="https://github.com/gr3i" target="_blank">github</a></p>
       </div>
       <div class="article">
         <h2></h2>
@@ -141,8 +147,30 @@
         setTimeout(() => {
           terminal.style.display = 'none';
           mainContent.style.display = 'flex';
+          morphName();
         }, 1000);
       }
+    }
+
+    function morphName() {
+      const nameEl = document.getElementById('nameDisplay');
+      const steps = [
+        'Zbyněk Dohnálek',
+        'Zbyněk D.',
+        'Zby Dohnálek',
+        'Dozby'
+      ];
+      let step = 0;
+
+      const nextStep = () => {
+        if (step < steps.length) {
+          nameEl.textContent = steps[step];
+          step++;
+          setTimeout(nextStep, 1000);
+        }
+      };
+
+      nextStep();
     }
 
     window.onload = typeWriter;
