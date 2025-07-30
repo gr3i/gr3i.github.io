@@ -1,49 +1,81 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Story - Dozby</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    body {
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
       font-family: 'Inter', sans-serif;
+    }
+
+    body {
       background-color: #0f0f0f;
       color: #f5f5f5;
+      overflow-x: hidden;
       padding: 2rem;
     }
 
-    a {
-      color: #60a5fa;
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
-    .back {
-      display: inline-block;
+    .navbar {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      background-color: #1a1a1a;
+      padding: 1rem;
       margin-bottom: 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .navbar a {
+      color: #f5f5f5;
+      text-decoration: none;
       font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    .navbar a:hover {
+      color: #60a5fa;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
     }
 
     h1 {
       margin-bottom: 1rem;
+      font-size: 2rem;
     }
 
     p {
       margin-bottom: 1em;
+      line-height: 1.6;
+    }
+
+    a {
+      color: #60a5fa;
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
-  <a href="index.html" class="back">← Back to Home</a>
-  <h1>My Story</h1>
+  <div class="navbar">
+    <a href="index.html">About Me</a>
+    <a href="story.html">My Story</a>
+    <a href="index.html#articles">Insights</a>
+  </div>
 
-  <p>In progress...</p>
+  <div class="container">
+    <h1>My Story</h1>
 
-
+    <p>In progress...</p>
+  </div>
 </body>
 </html>
-
