@@ -1,7 +1,9 @@
 # My own webpage
-You can find there something about my, my POV on things etc.
+* You can find there something about me...
 
-TODO:
+Link:[gr3i.github.io](https://gr3i.github.io)
+
+## TODO
 Add loading [DONE]
 Add PFP [DONE]
 Change color of Github link on blue (maybe) [done]
