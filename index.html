@@ -104,6 +104,7 @@
       font-size: 2.8rem;
       font-weight: 600;
       transition: all 0.5s ease-in-out;
+      cursor: pointer;
     }
   </style>
 </head>
@@ -118,7 +119,7 @@
     </div>
 
     <div class="profile">
-      <h1 id="nameDisplay"></h1>
+      <h1 id="nameDisplay">Dozby</h1>
       <img src="images/pfp.png" alt="Dozby Profile Picture">
     </div>
 
@@ -150,19 +151,20 @@
         setTimeout(() => {
           terminal.style.display = 'none';
           mainContent.style.display = 'flex';
-          startGSAPMorph();
         }, 1000);
       }
     }
 
-    function startGSAPMorph() {
+    function startGSAPMorphOnHover() {
       gsap.registerPlugin(TextPlugin);
-      const timeline = gsap.timeline({ repeat: 0 });
+      const timeline = gsap.timeline();
       timeline.to(nameEl, { duration: 1, text: "Zbyněk Dohnálek" })
-              .to(nameEl, { duration: 1, text: "Zbyněk D." }, "+=1")
+              .to(nameEl, { duration: 1, text: "Zbyněk Do." }, "+=1")
               .to(nameEl, { duration: 1, text: "Zby Dohnálek" }, "+=1")
               .to(nameEl, { duration: 1.2, text: "Dozby" }, "+=1");
     }
+
+    nameEl.addEventListener("mouseenter", startGSAPMorphOnHover);
 
     window.onload = typeWriter;
   </script>
