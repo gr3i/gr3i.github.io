@@ -1,1 +1,149 @@
-Hello, it's me
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dozby</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Courier New', Courier, monospace;
+    }
+
+    body {
+      background-color: #0f0f0f;
+      color: #f5f5f5;
+      overflow-x: hidden;
+    }
+
+    .terminal {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: black;
+      color: lime;
+      font-size: 1.5rem;
+      white-space: nowrap;
+    }
+
+    .main-content {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem;
+      animation: fadeIn 2s ease-in-out forwards;
+    }
+
+    .navbar {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      background-color: #1a1a1a;
+      padding: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .navbar a {
+      color: #f5f5f5;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    .navbar a:hover {
+      color: lime;
+    }
+
+    .profile {
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    .profile img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      border: 2px solid lime;
+      margin-top: 1rem;
+    }
+
+    .articles {
+      max-width: 800px;
+      margin: 3rem auto;
+    }
+
+    .article {
+      background: #1e1e1e;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      border-left: 4px solid lime;
+      transition: transform 0.3s;
+    }
+
+    .article:hover {
+      transform: translateX(10px);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="terminal" id="terminal"></div>
+
+  <div class="main-content" id="mainContent">
+    <div class="navbar">
+      <a href="#about">About Me</a>
+      <a href="#story">My Story</a>
+      <a href="#articles">Insights</a>
+    </div>
+
+    <div class="profile">
+      <h1>Dozby</h1>
+      <img src="https://via.placeholder.com/150" alt="Dozby Profile Picture">
+    </div>
+
+    <div class="articles" id="articles">
+      <div class="article">
+        <h2>Why Scripts Matter</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Skripty šetří čas a zvyšují efektivitu.</p>
+      </div>
+      <div class="article">
+        <h2>My First Automation Experience</h2>
+        <p>Byl jsem ohromen, jak jednoduché bash skripty mi ulehčily každodenní úkoly.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const terminal = document.getElementById('terminal');
+    const mainContent = document.getElementById('mainContent');
+    const text = 'Dozby webpage loading...';
+    let index = 0;
+
+    function typeWriter() {
+      if (index < text.length) {
+        terminal.textContent += text.charAt(index);
+        index++;
+        setTimeout(typeWriter, 100);
+      } else {
+        setTimeout(() => {
+          terminal.style.display = 'none';
+          mainContent.style.display = 'flex';
+        }, 1000);
+      }
+    }
+
+    window.onload = typeWriter;
+  </script>
+</body>
+</html>
+
