@@ -6,7 +6,7 @@
 ## TODO
 * Add loading [DONE]
 * Add PFP [DONE]
-* Change color of Github link on blue (maybe) [done]
-* Add link on YT (editing, drawing) []
+* Change color of Github link on blue (maybe) [DONE]
+* Add link on YT (editing, drawing) [DONE]
 
 
