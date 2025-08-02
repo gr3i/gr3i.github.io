@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Favorites</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background: radial-gradient(#1a1a1a, #0f0f0f);
+      color: #f5f5f5;
+      overflow-x: hidden;
+      padding: 0;
+    }
+
+    .navbar {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      background-color: #1a1a1a;
+      padding: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .navbar a {
+      color: #f5f5f5;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    .navbar a:hover {
+      color: #60a5fa;
+    }
+
+    .chaos-header {
+      text-align: center;
+      font-size: 3rem;
+      margin-top: 2rem;
+      animation: bluePulse 4s infinite;
+    }
+
+    @keyframes bluePulse {
+      0% { color: #60a5fa; }
+      25% { color: #3b82f6; }
+      50% { color: #2563eb; }
+      75% { color: #60a5fa; }
+      100% { color: #3b82f6; }
+    }
+
+    .chaos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 2rem;
+      padding: 3rem;
+      margin-top: 2rem;
+      transform: rotate(-1deg);
+    }
+
+    .chaos-box {
+      background-color: rgba(31, 31, 31, 0.9);
+      border: 3px dashed #60a5fa;
+      padding: 1.5rem;
+      transform: rotate(calc(-3deg + 6deg * var(--r))) scale(1.02);
+      animation: float 4s ease-in-out infinite, glow 3s ease-in-out infinite alternate;
+      box-shadow: 0 0 10px rgba(96, 165, 250, 0.3);
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(var(--rotate)) scale(1.02); }
+      50% { transform: translateY(-10px) rotate(var(--rotate)) scale(1.02); }
+    }
+
+    @keyframes glow {
+      0% { box-shadow: 0 0 10px #60a5fa; }
+      100% { box-shadow: 0 0 20px #3b82f6; }
+    }
+
+    .chaos-box h2 {
+      color: #91caff;
+      margin-bottom: 0.8rem;
+      font-size: 1.4rem;
+    }
+
+    iframe {
+      width: 100%;
+      height: 200px;
+      border: none;
+      margin-top: 1rem;
+    }
+
+    a {
+      color: #facc15;
+      text-decoration: underline;
+      word-break: break-word;
+      transition: color 0.3s;
+    }
+
+    a:hover {
+      color: #f472b6;
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <a href="index.html">About Me</a>
+    <a href="story.html">My Story</a>
+    <a href="insights.html">Insights</a>
+  </div>
+
+  <h1 class="chaos-header">My Favorites</h1>
+
+  <div class="chaos-grid">
+    <div class="chaos-box" style="--r: 1; --rotate: -2deg;">
+      <h2>📚 Books</h2>
+      <p>Ranger’s Apprentice by John Flanagan; Harry Potter by J.K. Rowling</p>
+    </div>
+    <div class="chaos-box" style="--r: 2; --rotate: 3deg;">
+      <h2>👨‍💻 Learning Stuff</h2>
+      <p><em>Teach Yourself C</em> by Herbert Schildt</p>
+    </div>
+    <div class="chaos-box" style="--r: 3; --rotate: -4deg;">
+      <h2>🎵 Music Taste</h2>
+      <p>Kinda mix of everything.</p>
+      <p>You can listen to my AMV Playlist and make your idea...</p>
+    </div>
+    <div class="chaos-box" style="--r: 4; --rotate: 2deg;">
+      <h2>🔥 AMV Playlist</h2>
+      <p><a href="https://www.youtube.com/playlist?list=PLOr0vKFusJ35LtcaIuKVNgpo8SXDQXeyE" target="_blank">Open full YouTube Playlist</a></p>
+    </div>
+    <div class="chaos-box" style="--r: 5; --rotate: -1deg;">
+      <h2>🌀 Anime</h2>
+      <p>Go on my MAL or AniList</p>
+      <p><a href="https://myanimelist.net/profile/dozby" target="_blank">MAL</a></p>
+      <p><a href="https://anilist.co/user/Dozby" target="_blank">AniList</a></p>
+    </div>
+  </div>
+</body>
+</html>
