@@ -13,15 +13,42 @@
     }
 
     body {
-      background: #0f0f0f;
-      color: #f5f5f5;
-      font-family: 'Inter', sans-serif;
+  background: #0f0f0f;
+  color: #f5f5f5;
+  font-family: 'Inter', sans-serif;
+  min-height: 100vh;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+
+    .navbar {
+      width: 100%;
       display: flex;
       justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      padding: 2rem;
+      gap: 2rem;
+      background-color: #1a1a1a;
+      padding: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      margin-bottom: 2rem;
     }
+
+    .navbar a {
+      color: #f5f5f5;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    .navbar a:hover {
+      color: #60a5fa;
+    }
+
 
     .tree-wrapper {
       width: 100%;
@@ -188,8 +215,15 @@
   </style>
 </head>
 <body>
+
+  <div class="navbar">
+    <a href="index.html">About Me</a>
+    <a href="story.html">My Story</a>
+    <a href="insights.html">Insights</a>
+  </div>
+
   <div class="tree-wrapper" id="treeWrapper">
-    <button class="milestone-toggle" onclick="toggleTree()">🎓 Key Milestones</button>
+    <button class="milestone-toggle" onclick="toggleTree()">My Timeline</button>
     <div class="tree-container" id="milestoneTree">
       
       <svg viewBox="0 0 1600 1000">
