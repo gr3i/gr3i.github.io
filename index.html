@@ -259,9 +259,9 @@
     </div>
     
 
-
+<!--
    <div class="tree-wrapper" id="treeWrapper">
-    <button class="milestone-toggle" onclick="toggleTree()">🎓 Milestones</button>
+    <button class="milestone-toggle" onclick="toggleTree()">🎓 Key Milestones</button>
     <div class="tree-container" id="milestoneTree">
       
       <svg viewBox="0 0 1600 1000">
@@ -276,7 +276,7 @@
 
         <text x="440" y="855" class="label" style="animation-delay: 0.4s;">Born: September 2, 2003</text>
         <text x="440" y="745" class="label" style="animation-delay: 0.6s;">2010: Started elementary school – Hraničářů Elementary School, Mikulov</text>
-        <text x="440" y="635" class="label" style="animation-delay: 0.8s;">2015: Entered grammar school – Grammar School and Secondary Technical School, Mikulov</text>
+        <text x="440" y="635" class="label" style="animation-delay: 0.8s;">2015: Entered grammar school – Gymnázium a SOŠ Mikulov</text>
         <text x="440" y="525" class="label" style="animation-delay: 1s;">2023: Started university – Brno University of Technology</text>
         <text x="440" y="545" class="note" style="animation-delay: 1.1s;">Faculty of Electrical Engineering and Communication (FEEC), Information Security</text>
         <text x="440" y="565" class="note" style="animation-delay: 1.2s;">↪ Switched due to legal course issues</text>
@@ -285,7 +285,7 @@
       </svg>
     </div>
   </div>
-
+-->
 
   </div>
 
@@ -321,7 +321,7 @@
       mainContent.style.display = 'flex';
     }
   
-    
+    // GSAP efekt na jméně
     function startGSAPMorphOnHover() {
       gsap.registerPlugin(TextPlugin);
       const timeline = gsap.timeline();
@@ -333,7 +333,7 @@
   
     nameEl.addEventListener("mouseenter", startGSAPMorphOnHover);
 
-   
+   // Zobrazit až po "Loading..." nebo jiné animaci – manuálně
     window.addEventListener('load', () => {
       setTimeout(() => {
         const wrapper = document.getElementById('treeWrapper');
