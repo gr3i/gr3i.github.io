@@ -13,137 +13,45 @@
     }
 
     body {
-  background: #0f0f0f;
-  color: #f5f5f5;
-  font-family: 'Inter', sans-serif;
-  min-height: 100vh;
-  padding: 1rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
-
-    .navbar {
-      width: 100%;
+      background: radial-gradient(circle at top left, #0f172a, #0f0f0f);
+      color: #f5f5f5;
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      padding: 1.5rem;
       display: flex;
       justify-content: center;
-      gap: 2rem;
-      background-color: #1a1a1a;
-      padding: 1rem;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      margin-bottom: 2rem;
-    }
-
-    .navbar a {
-      color: #f5f5f5;
-      text-decoration: none;
-      font-weight: bold;
-      transition: color 0.3s;
-    }
-
-    .navbar a:hover {
-      color: #60a5fa;
-    }
-
-
-    .tree-wrapper {
-      width: 100%;
-      max-width: 1000px;
-      padding: 2rem;
-      background: #1a1a1a;
-      border: 1px solid #333;
-      border-radius: 1rem;
-      box-shadow: 0 0 30px rgba(96, 165, 250, 0.4);
-    }
-
-    .tree-title {
-      text-align: center;
-      font-size: 2.5rem;
-      color: #60a5fa;
-      margin-bottom: 2rem;
-    }
-
-    .timeline {
-      position: relative;
-      margin: 0 auto;
-      padding-left: 40px;
-      display: flex;
-      flex-direction: column-reverse;
       align-items: flex-start;
-    }
-
-    .timeline::before {
-      content: '';
-      position: absolute;
-      left: 6px;
-      top: 0;
-      bottom: 0;
-      width: 4px;
-      background: #3b82f6;
-    }
-
-    .milestone {
-      position: relative;
-      padding-left: 2rem;
-      margin-bottom: 2.5rem;
-    }
-
-    .milestone::before {
-      content: '';
-      position: absolute;
-      left: 4px;
-      top: 0.7em;
-      width: 12px;
-      height: 12px;
-      background-color: #3b82f6;
-      border-radius: 50%;
-      transform: translate(-50%, -50%);
-    }
-
-    .milestone h3 {
-      font-family: 'Fira Code', monospace;
-      font-size: 1.25rem;
-      margin-bottom: 0.3rem;
-    }
-
-    .milestone p {
-      font-size: 0.95rem;
-      color: #ccc;
-      font-family: 'Fira Code', monospace;
-      line-height: 1.4;
+      flex-direction: column;
     }
 
     .tree-wrapper {
       width: 100%;
       max-width: 1200px;
-      display: block;
+      padding: 2.5rem;
+      background: #111827;
+      border-radius: 1.5rem;
+      box-shadow: 0 0 40px rgba(96, 165, 250, 0.5);
+      border: 1px solid #1e293b;
+      animation: fadeIn 1.5s ease-out;
     }
 
     .milestone-toggle {
       font-family: 'Fira Code', monospace;
-      font-size: 2rem;
-      background: none;
-      color: #60a5fa;
+      font-size: 2.5rem;
+      background: linear-gradient(to right, #3b82f6, #60a5fa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
       border: none;
-      cursor: pointer;
-      text-align: center;
+      cursor: default;
       width: 100%;
-      transition: color 0.3s;
-      padding-bottom: 0;
-      margin-bottom: 0;
+      margin-bottom: 2rem;
+      text-align: center;
     }
 
     .tree-container {
       width: 100%;
-      max-width: 1600px;
-      position: relative;
-      margin-top: 0;
-      display: block;
-      animation: fadeIn 1.5s ease-out;
+      overflow-x: auto;
+      padding-bottom: 1rem;
     }
 
     svg {
@@ -151,96 +59,98 @@
       height: auto;
     }
 
-    .label {
-      font-size: 20px;
-      fill: #f5f5f5;
-      font-family: 'Fira Code', monospace;
+    .line {
+      stroke: url(#lineGradient);
+      stroke-width: 6;
+      stroke-dasharray: 8 6;
       opacity: 0;
-      animation: fadeUp 1s ease forwards;
-    }
-
-    .note {
-      font-size: 18px;
-      fill: #999;
-      font-family: 'Fira Code', monospace;
-      opacity: 0;
-      animation: fadeUp 1s ease forwards;
+      animation: fadeInLine 1.2s ease forwards;
     }
 
     .node {
       fill: #60a5fa;
-      stroke: #1a1a1a;
-      stroke-width: 2;
+      stroke: #1e293b;
+      stroke-width: 3;
+      filter: drop-shadow(0 0 8px #60a5fa);
       transform: scale(0);
       animation: popIn 0.6s ease-out forwards;
+      transition: transform 0.3s;
+    }
+    .node:hover {
+      transform: scale(1.3);
     }
 
-    .line {
-      stroke: #333;
-      stroke-width: 4;
-      stroke-dasharray: 6 4;
+    .label, .note {
+      font-family: 'Fira Code', monospace;
       opacity: 0;
-      animation: fadeInLine 1s ease forwards;
+      animation: fadeUp 1s ease forwards;
+      pointer-events: none;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+    .label {
+      font-size: 1.1rem;
+      fill: #f5f5f5;
+    }
+    .note {
+      font-size: 0.95rem;
+      fill: #94a3b8;
     }
 
-    @keyframes fadeUp {
-      to { opacity: 1; transform: translateY(0); }
-      from { opacity: 0; transform: translateY(10px); }
-    }
-
-    @keyframes popIn {
-      to { transform: scale(1); opacity: 1; }
-      from { transform: scale(0); opacity: 0; }
-    }
-
-    @keyframes fadeInLine {
-      to { opacity: 1; }
-      from { opacity: 0; }
-    }
-
-    @media (max-width: 768px) {
-      .label, .note {
-        font-size: 14px;
-      }
-    }
-
-    .go-back{
+    .go-back {
       text-align: center;
-      
+      margin-top: 2rem;
     }
 
     .go-back a {
       color: #60a5fa;
       text-decoration: none;
       font-weight: bold;
+      font-size: 1.1rem;
       transition: color 0.3s;
-      font-size: 20px;
     }
-
     .go-back a:hover {
-      color: #3887e7;
+      color: #93c5fd;
     }
 
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes popIn {
+      from { transform: scale(0); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+    @keyframes fadeInLine {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @media (max-width: 768px) {
+      .label, .note {
+        font-size: 0.85rem;
+      }
+      .milestone-toggle {
+        font-size: 1.8rem;
+      }
+    }
   </style>
 </head>
 <body>
-<!--
-  <div class="navbar">
-    <a href="index.html">About Me</a>
-    <a href="story.html">My Story</a>
-    <a href="insights.html">Insights</a>
-  </div>
--->
   <div class="tree-wrapper" id="treeWrapper">
     <button class="milestone-toggle">My Timeline</button>
     <div class="tree-container" id="milestoneTree">
-      
       <svg viewBox="0 0 1600 1000">
+        <defs>
+          <linearGradient id="lineGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#93c5fd"/>
+            <stop offset="100%" stop-color="#3b82f6"/>
+          </linearGradient>
+        </defs>
+
         <line x1="400" y1="100" x2="400" y2="850" class="line" style="animation-delay: 0.2s;"/>
 
         <circle cx="400" cy="850" r="12" class="node" style="animation-delay: 0.3s;" />
@@ -261,11 +171,8 @@
       </svg>
     </div>
     <div class="go-back">
-      <p><a href="index.html" target="_self">Go Back</a></p>
+      <p><a href="index.html" target="_blank">Go Back</a></p>
     </div>
   </div>
-
-
-  
 </body>
 </html>
