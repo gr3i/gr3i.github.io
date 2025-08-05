@@ -137,10 +137,6 @@
       margin-bottom: 0;
     }
 
-    .milestone-toggle:hover {
-      color: #3b82f6;
-    }
-
     .tree-container {
       width: 100%;
       max-width: 1600px;
@@ -215,12 +211,11 @@
 
     .go-back{
       text-align: center;
-      color: #3b82f6;
       
     }
 
     .go-back a {
-      color: #3b82f6;
+      color: #60a5fa;
       text-decoration: none;
       font-weight: bold;
       transition: color 0.3s;
@@ -228,7 +223,7 @@
     }
 
     .go-back a:hover {
-      color: #60a5fa;
+      color: #3887e7;
     }
 
   </style>
@@ -242,7 +237,7 @@
   </div>
 -->
   <div class="tree-wrapper" id="treeWrapper">
-    <button class="milestone-toggle" onclick="toggleTree()">My Timeline</button>
+    <button class="milestone-toggle">My Timeline</button>
     <div class="tree-container" id="milestoneTree">
       
       <svg viewBox="0 0 1600 1000">
@@ -271,18 +266,6 @@
   </div>
 
 
-  <script>
-
-    function toggleTree() {
-      const tree = document.getElementById('milestoneTree');
-      const isHidden = tree.style.display === 'none' || tree.style.display === '';
-      if (isHidden) {
-        tree.style.display = 'block';
-        tree.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      } else {
-        tree.style.display = 'none';
-      }
-    }
-  </script>
+  
 </body>
 </html>
