@@ -12,147 +12,58 @@
       box-sizing: border-box;
     }
 
+    
+
     body {
-  background: #0f0f0f;
-  color: #f5f5f5;
-  font-family: 'Inter', sans-serif;
-  min-height: 100vh;
+      background: #0f0f0f;
+      color: #f5f5f5;
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      flex-direction: center;
+      padding-top: 4rem;
+    }
+
+    .tree-wrapper {
+  width: 100%;
+  max-width: 1000px;
   padding: 1rem;
+  background: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 1rem;
+  box-shadow: 0 0 30px rgba(96, 165, 250, 0.4);
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; 
+      height: 800px; /* nebo např. 800px, pokud chceš pevnou výšku */
+    }
+
+
+    .tree-container {
+  width: 100%;
+  margin-top: 0;
   display: flex;
   justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  align-items: flex-start;
+  padding-top: 0;
+  flex: 1;
 }
 
 
-    .navbar {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      background-color: #1a1a1a;
-      padding: 1rem;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      margin-bottom: 2rem;
-    }
-
-    .navbar a {
-      color: #f5f5f5;
-      text-decoration: none;
-      font-weight: bold;
-      transition: color 0.3s;
-    }
-
-    .navbar a:hover {
-      color: #60a5fa;
-    }
-
-
-    .tree-wrapper {
-      width: 100%;
-      max-width: 1000px;
-      padding: 2rem;
-      background: #1a1a1a;
-      border: 1px solid #333;
-      border-radius: 1rem;
-      box-shadow: 0 0 30px rgba(96, 165, 250, 0.4);
-    }
-
-    .tree-title {
-      text-align: center;
-      font-size: 2.5rem;
-      color: #60a5fa;
-      margin-bottom: 2rem;
-    }
-
-    .timeline {
-      position: relative;
-      margin: 0 auto;
-      padding-left: 40px;
-      display: flex;
-      flex-direction: column-reverse;
-      align-items: flex-start;
-    }
-
-    .timeline::before {
-      content: '';
-      position: absolute;
-      left: 6px;
-      top: 0;
-      bottom: 0;
-      width: 4px;
-      background: #3b82f6;
-    }
-
-    .milestone {
-      position: relative;
-      padding-left: 2rem;
-      margin-bottom: 2.5rem;
-    }
-
-    .milestone::before {
-      content: '';
-      position: absolute;
-      left: 4px;
-      top: 0.7em;
-      width: 12px;
-      height: 12px;
-      background-color: #3b82f6;
-      border-radius: 50%;
-      transform: translate(-50%, -50%);
-    }
-
-    .milestone h3 {
-      font-family: 'Fira Code', monospace;
-      font-size: 1.25rem;
-      margin-bottom: 0.3rem;
-    }
-
-    .milestone p {
-      font-size: 0.95rem;
-      color: #ccc;
-      font-family: 'Fira Code', monospace;
-      line-height: 1.4;
-    }
-
-    .tree-wrapper {
-      width: 100%;
-      max-width: 1200px;
-      display: block;
-    }
-
-    .milestone-toggle {
-      font-family: 'Fira Code', monospace;
-      font-size: 2rem;
-      background: none;
-      color: #60a5fa;
-      border: none;
-      cursor: pointer;
-      text-align: center;
-      width: 100%;
-      transition: color 0.3s;
-      padding-bottom: 0;
-      margin-bottom: 0;
-    }
-
-    .tree-container {
-      width: 100%;
-      max-width: 1600px;
-      position: relative;
-      margin-top: 0;
-      display: block;
-      animation: fadeIn 1.5s ease-out;
-    }
-
     svg {
-      width: 100%;
-      height: auto;
+      display: block;
+      max-width: 1500px;
+      height: 800px;
+      margin: 0 auto;
     }
 
     .label {
-      font-size: 20px;
+      font-size: 18px;
       fill: #f5f5f5;
       font-family: 'Fira Code', monospace;
       opacity: 0;
@@ -160,7 +71,7 @@
     }
 
     .note {
-      font-size: 18px;
+      font-size: 16px;
       fill: #999;
       font-family: 'Fira Code', monospace;
       opacity: 0;
@@ -189,28 +100,46 @@
     }
 
     @keyframes fadeUp {
-      to { opacity: 1; transform: translateY(0); }
       from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     @keyframes popIn {
-      to { transform: scale(1); opacity: 1; }
       from { transform: scale(0); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
     }
 
     @keyframes fadeInLine {
-      to { opacity: 1; }
       from { opacity: 0; }
+      to { opacity: 1; }
     }
 
     @media (max-width: 768px) {
-      .label, .note {
-        font-size: 14px;
+      .label {
+        font-size: 16px;
+      }
+      .note {
+        font-size: 14.5px;
+      }
+      .milestone-toggle {
+        font-size: 1.8rem;
+      }
+      svg {
+        min-width: 700px;
+        height: auto;
+      }
+      body {
+        padding: 1rem 0.5rem;
+        align-items: stretch;
+      }
+      .tree-wrapper {
+        padding: 1.5rem 1rem;
       }
     }
 
-    .go-back{
+    .go-back {
       text-align: center;
+      
       
     }
 
@@ -226,46 +155,116 @@
       color: #3887e7;
     }
 
+    .desktop-timeline, .mobile-timeline {
+      display: none;
+    }
+
+    @media (min-width: 769px) {
+      .desktop-timeline {
+        display: block;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .mobile-timeline {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        margin-top: 2rem;
+      }
+      .mobile-timeline .milestone {
+        background-color: #1f2937;
+        border-left: 4px solid #3b82f6;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        box-shadow: 0 0 10px rgba(96, 165, 250, 0.2);
+      }
+      .mobile-timeline h3 {
+        color: #60a5fa;
+        font-family: 'Fira Code', monospace;
+        margin-bottom: 0.5rem;
+      }
+      .mobile-timeline p {
+        font-family: 'Fira Code', monospace;
+        color: #d1d5db;
+        line-height: 1.4;
+        font-size: 0.95rem;
+      }
+    }
+    .milestone-toggle {
+      font-family: 'Fira Code', monospace;
+      font-size: 2rem;
+      background: none;
+      color: #60a5fa;
+      border: none;
+      cursor: default;
+      text-align: center;
+      width: 100%;
+      margin-bottom: 0.5rem;
+      margin-top: 1rem;
+    }
   </style>
 </head>
 <body>
-<!--
-  <div class="navbar">
-    <a href="index.html">About Me</a>
-    <a href="story.html">My Story</a>
-    <a href="insights.html">Insights</a>
-  </div>
--->
-  <div class="tree-wrapper" id="treeWrapper">
-    <button class="milestone-toggle">My Timeline</button>
-    <div class="tree-container" id="milestoneTree">
-      
-      <svg viewBox="0 0 1600 1000">
-        <line x1="400" y1="100" x2="400" y2="850" class="line" style="animation-delay: 0.2s;"/>
+  <!-- Desktop Timeline (SVG) -->
+  <div class="desktop-timeline">
+    <div class="tree-wrapper">
+      <div class="milestone-toggle">My Timeline</div>
+      <div class="tree-container">
+        <svg viewBox="0 0 1000 1000">
+          <line x1="100" y1="50" x2="100" y2="600" class="line" style="animation-delay: 0.2s;"/>
 
-        <circle cx="400" cy="850" r="12" class="node" style="animation-delay: 0.3s;" />
-        <circle cx="400" cy="740" r="12" class="node" style="animation-delay: 0.5s;" />
-        <circle cx="400" cy="630" r="12" class="node" style="animation-delay: 0.7s;" />
-        <circle cx="400" cy="520" r="12" class="node" style="animation-delay: 0.9s;" />
-        <circle cx="400" cy="410" r="12" class="node" style="animation-delay: 1.1s;" />
-        <circle cx="400" cy="300" r="12" class="node" style="animation-delay: 1.3s;" />
+          <circle cx="100" cy="600" r="12" class="node" style="animation-delay: 0.3s;" />
+          <circle cx="100" cy="510" r="12" class="node" style="animation-delay: 0.5s;" />
+          <circle cx="100" cy="420" r="12" class="node" style="animation-delay: 0.7s;" />
+          <circle cx="100" cy="330" r="12" class="node" style="animation-delay: 0.9s;" />
+          <circle cx="100" cy="240" r="12" class="node" style="animation-delay: 1.1s;" />
+          <circle cx="100" cy="150" r="12" class="node" style="animation-delay: 1.3s;" />
 
-        <text x="440" y="855" class="label" style="animation-delay: 0.4s;">Born: September 2, 2003</text>
-        <text x="440" y="745" class="label" style="animation-delay: 0.6s;">2010: Started elementary school – ZŠ Mikulov Hraničárů</text>
-        <text x="440" y="635" class="label" style="animation-delay: 0.8s;">2015: Entered grammar school – Gymnázium a SOŠ Mikulov</text>
-        <text x="440" y="525" class="label" style="animation-delay: 1s;">2023: Started university – Brno University of Technology</text>
-        <text x="440" y="545" class="note" style="animation-delay: 1.1s;">Faculty of Electrical Engineering and Communication (FEEC), Information Security</text>
-        <text x="440" y="565" class="note" style="animation-delay: 1.2s;">↪ Switched due to issues with legal subjects</text>
-        <text x="440" y="415" class="label" style="animation-delay: 1.3s;">2025: Switched to – Brno University of Technology</text>
-        <text x="440" y="435" class="note" style="animation-delay: 1.4s;">Faculty of Information Technology (FIT)</text>
-      </svg>
-    </div>
-    <div class="go-back">
-      <p><a href="index.html" target="_self">Go Back</a></p>
+          <text x="140" y="605" class="label" style="animation-delay: 0.4s;">Born: September 2, 2003</text>
+          <text x="140" y="515" class="label" style="animation-delay: 0.6s;">2010: Started elementary school – ZŠ Mikulov Hraničárů</text>
+          <text x="140" y="425" class="label" style="animation-delay: 0.8s;">2015: Entered grammar school – Gymnázium a SOŠ Mikulov</text>
+          <text x="140" y="335" class="label" style="animation-delay: 1s;">2023: Started university – Brno University of Technology</text>
+          <text x="140" y="355" class="note" style="animation-delay: 1.1s;">Faculty of Electrical Engineering and Communication (FEEC), Information Security</text>
+          <text x="140" y="375" class="note" style="animation-delay: 1.2s;">↪ Switched due to issues with legal subjects</text>
+          <text x="140" y="245" class="label" style="animation-delay: 1.3s;">2025: Switched to – Brno University of Technology</text>
+          <text x="140" y="265" class="note" style="animation-delay: 1.4s;">Faculty of Information Technology (FIT)</text>
+        </svg>
+        
+      </div>
+      <div class="go-back">
+        <p><a href="index.html" target="_self">Go Back</a></p>
+      </div>
     </div>
   </div>
-
-
   
+
+  <!-- Mobile Timeline (List) -->
+  <div class="mobile-timeline">
+      <div class="milestone">
+        <h3>2025</h3>
+        <p>Switched to BUT FIT</p>
+      </div>
+      <div class="milestone">
+        <h3>2023</h3>
+        <p>Started university – BUT, FEEC – Information Security</p>
+        <p><em>↪ Switched due to issues with legal subjects</em></p>
+      </div>
+      <div class="milestone">
+        <h3>2015</h3>
+        <p>Entered grammar school – Gymnázium a SOŠ Mikulov</p>
+      </div>
+      <div class="milestone">
+        <h3>2010</h3>
+        <p>Started elementary school – ZŠ Mikulov Hraničárů</p>
+      </div>
+      <div class="milestone">
+        <h3>2003</h3>
+        <p>Born: September 2, 2003</p>
+      </div>
+      <div class="go-back">
+        <p><a href="index.html" target="_self">Go Back</a></p>
+      </div>
+    </div>
 </body>
 </html>
