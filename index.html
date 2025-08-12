@@ -212,6 +212,14 @@
       }
     }
 
+    /* VS Code-ish colors */
+  .token-comment { color:#6a9955; }
+  .token-kw      { color:#569cd6; }
+  .token-fn      { color:#dcdcaa; }
+  .token-str     { color:#ce9178; }
+  #statusBox     { white-space: pre-wrap; } /* zachovam zalomeni radku */
+
+
   </style>
 </head>
 <body>
@@ -230,6 +238,40 @@
     </div>
 
     <div class="articles" id="articles">
+<!--
+      <div class="article" style="text-align: center;">
+      <p style="font-size: 1.1rem; margin-bottom: 0.5rem;">
+        I’m not very active on social media, so if it takes me a really long time to respond, I’m sorry. 
+        <span style="opacity: 0.8;">(Btw, I’m not ignoring anyone — unless you’re a bot)</span>
+      </p>
+        <p style="font-size: 0.95rem; color: #999;">
+          Reply speed: snail 🐌 | Ignore list: bots only
+        </p>
+      </div>
+    -->
+
+  <!--
+      <div class="article" style="text-align: center; font-family: 'Fira Code', monospace; background: #141414; border: 1px solid #333; border-radius: 8px; padding: 1.2rem; margin-bottom: 1.5rem;">
+        <p style="color: #60a5fa; font-size: 1rem; margin-bottom: 0.4rem;">
+        // Status update:
+        </p>
+        <p style="color: #f5f5f5; font-size: 1.05rem; margin-bottom: 0.6rem;">
+          I’m not very active on social media, so if it takes me a really long time to respond, I’m sorry. 
+    
+        <span style="color: #999;">// I’m not ignoring anyone — unless you’re a bot </span>
+        </p>
+        <p style="color: #60a5fa; font-size: 0.95rem;">
+          console.log("Reply speed: snail 🐌");<br>
+          console.log("Ignore list: bots only");
+        </p>
+      </div>
+  -->
+      <div class="article" id="statusBox" style="text-align: left; font-family: 'Fira Code', monospace; background: #141414; border: 1px solid #333; border-radius: 8px; padding: 1.2rem; margin-bottom: 1.5rem; white-space: pre-line; line-height: 1.4;">
+  <span id="statusText"></span><span id="cursor" style="color:#60a5fa;">█</span>
+</div>
+
+
+
       <div class="article">
         <h2>Programming</h2>
         <p>If you want to see my projects I did at school or what I do in my freetime, go on my <a href="https://github.com/gr3i" target="_blank">GitHub</a>.</p>
@@ -325,7 +367,7 @@
       mainContent.style.display = 'flex';
     }
   
-    // GSAP efekt na jméně
+    // GSAP efekt na jmene
     function startGSAPMorphOnHover() {
       gsap.registerPlugin(TextPlugin);
       const timeline = gsap.timeline();
@@ -337,7 +379,7 @@
   
     nameEl.addEventListener("mouseenter", startGSAPMorphOnHover);
 
-   // Zobrazit až po "Loading..." nebo jiné animaci – manuálně
+   // Zobrazit az po "Loading..." nebo jine animaci – manualne
     window.addEventListener('load', () => {
       setTimeout(() => {
         const wrapper = document.getElementById('treeWrapper');
@@ -355,6 +397,71 @@
         tree.style.display = 'none';
       }
     }
+
+    const statusLinesTokens = [
+  // kazdy radek = pole tokenu {text, cls}
+  [ {text:"// Status update:", cls:"token-comment"} ],
+  [ {text:"I’m not very active on social media, so if it takes me a really long time to respond, I’m sorry.", cls:""} ],
+  [ {text:"// I’m not ignoring anyone — unless you’re a bot ", cls:"token-comment"} ],
+  [],
+  [ {text:"console", cls:"token-kw"}, {text:".", cls:""},
+    {text:"log", cls:"token-fn"}, {text:"(", cls:""},
+    {text:"\"Reply speed: snail\"", cls:"token-str"}, {text:")", cls:""}, {text:";", cls:""} ],
+  [ {text:"console", cls:"token-kw"}, {text:".", cls:""},
+    {text:"log", cls:"token-fn"}, {text:"(", cls:""},
+    {text:"\"Ignore list: bots only \"", cls:"token-str"}, {text:")", cls:""}, {text:";", cls:""} ],
+];
+
+const statusTextEl = document.getElementById("statusText");
+const cursorEl = document.getElementById("cursor");
+
+let lineI = 0, tokenI = 0, charI = 0;
+let currentSpan = null;
+
+function typeNext() {
+  if (lineI >= statusLinesTokens.length) { return blinkCursor(); }
+
+  const line = statusLinesTokens[lineI];
+
+  // konec radku
+  if (tokenI >= line.length) {
+    statusTextEl.appendChild(document.createTextNode("\n"));
+    lineI++; tokenI = 0; charI = 0; currentSpan = null;
+    return setTimeout(typeNext, 150);
+  }
+
+  // novy token - vytvor span (nebo textNode)
+  const token = line[tokenI];
+  if (charI === 0) {
+    currentSpan = token.cls
+      ? Object.assign(document.createElement("span"), { className: token.cls })
+      : document.createTextNode("");
+    statusTextEl.appendChild(currentSpan);
+  }
+
+  // pridej dalsi znak do aktualniho tokenu
+  const ch = token.text.charAt(charI);
+  if (token.cls) {
+    currentSpan.appendChild(document.createTextNode(ch));
+  } else {
+    currentSpan.data += ch;
+  }
+
+  charI++;
+  if (charI >= token.text.length) { tokenI++; charI = 0; currentSpan = null; }
+  setTimeout(typeNext, 20);
+}
+
+function blinkCursor() {
+  setInterval(() => {
+    cursorEl.style.visibility = cursorEl.style.visibility === "hidden" ? "visible" : "hidden";
+  }, 500);
+}
+
+window.addEventListener("load", () => {
+  setTimeout(typeNext, 1500); // po „Loading…“
+});
+
   </script>
   
 </body>
