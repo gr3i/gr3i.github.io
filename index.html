@@ -342,7 +342,9 @@
     const mainContent = document.getElementById('mainContent');
     const nameEl = document.getElementById('nameDisplay');
   
-    const isIndex = window.location.pathname.endsWith("index.html") || window.location.pathname === "/";
+    const path = window.location.pathname;
+    const isIndex = path.endsWith("/") || path.endsWith("index.html");
+
   
     const text = 'Loading...';
     let index = 0;
