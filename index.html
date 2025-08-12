@@ -233,6 +233,35 @@
   }
   @keyframes caretBlink { 50% { opacity:0; } }  
 
+  .dozby-quote {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #555;
+  border-left: 3px solid rgba(0,0,0,0.2);
+  padding-left: 1em;
+  margin: 1.5em 0;
+  font-style: italic;
+  position: relative;
+}
+
+.dozby-quote::before {
+  content: "“";
+  font-size: 2rem;
+  color: rgba(0,0,0,0.25);
+  position: absolute;
+  left: -0.5em;
+  top: -0.4em;
+}
+
+.dozby-quote::after {
+  content: "”";
+  font-size: 2rem;
+  color: rgba(0,0,0,0.25);
+  position: absolute;
+  right: 0;
+  bottom: -0.6em;
+}
 
   </style>
 </head>
@@ -283,6 +312,13 @@
       <div class="article" id="statusBox" style="text-align: left; font-family: 'Fira Code', monospace; background: #141414; border: 1px solid #333; border-radius: 8px; padding: 1.2rem; margin-bottom: 1.5rem; white-space: pre-line; line-height: 1.4;">
         <span id="statusText"></span><span id="cursor" style="color:#60a5fa;">█</span>
       </div>
+
+  <blockquote class="dozby-quote">
+    Sometimes I’m active, but I can also disappear from social media “overnight” for a while without saying when I’ll be back. I’m sharing this so you know I might not reply right away — it helps me avoid the constant urge to check messages, and it means there’s no pressure on either side. For some people this might seem strange, but it really helps me keep a clearer mind and stay focused on my learning and work.
+  </blockquote>
+
+
+
 
 
 
