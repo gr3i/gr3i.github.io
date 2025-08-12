@@ -217,7 +217,21 @@
   .token-kw      { color:#569cd6; }
   .token-fn      { color:#dcdcaa; }
   .token-str     { color:#ce9178; }
-  #statusBox     { white-space: pre-wrap; } /* zachovam zalomeni radku */
+  
+  /* jemny nabeh boxu */
+  #statusBox {
+    opacity: 0;
+    transform: translateY(6px);
+    animation: sbFade .45s ease-out .8s forwards;
+  }
+  @keyframes sbFade { to { opacity:1; transform: translateY(0); } }
+
+  /* blikajici kurzor ciste pres CSS */
+  #cursor {
+    color:#60a5fa;
+    animation: caretBlink 1s steps(1, end) infinite;
+  }
+  @keyframes caretBlink { 50% { opacity:0; } }  
 
 
   </style>
@@ -400,69 +414,24 @@
       }
     }
 
-    const statusLinesTokens = [
-  // kazdy radek = pole tokenu {text, cls}
-  [ {text:"// Status update:", cls:"token-comment"} ],
-  [ {text:"I’m not very active on social media, so if it takes me a really long time to respond, I’m sorry.", cls:""} ],
-  [ {text:"// I’m not ignoring anyone — unless you’re a bot ", cls:"token-comment"} ],
-  [],
-  [ {text:"console", cls:"token-kw"}, {text:".", cls:""},
-    {text:"log", cls:"token-fn"}, {text:"(", cls:""},
-    {text:"\"Reply speed: snail\"", cls:"token-str"}, {text:")", cls:""}, {text:";", cls:""} ],
-  [ {text:"console", cls:"token-kw"}, {text:".", cls:""},
-    {text:"log", cls:"token-fn"}, {text:"(", cls:""},
-    {text:"\"Ignore list: bots only \"", cls:"token-str"}, {text:")", cls:""}, {text:";", cls:""} ],
-];
+   const statusTextEl = document.getElementById("statusText");
 
-const statusTextEl = document.getElementById("statusText");
-const cursorEl = document.getElementById("cursor");
+    // vykreslim obsah hned
+    const statusHTML = `
+    <span class="token-comment">// Status update:</span>
+    I’m not very active on social media, so if it takes me a really long time to respond, I’m sorry.
+    <span class="token-comment">// I’m not ignoring anyone — unless you’re a bot</span>
 
-let lineI = 0, tokenI = 0, charI = 0;
-let currentSpan = null;
+    <span class="token-kw">console</span>.<span class="token-fn">log</span>(<span class="token-str">"Reply speed: snail 🐌"</span>);
+    <span class="token-kw">console</span>.<span class="token-fn">log</span>(<span class="token-str">"Ignore list: bots only"</span>);
+    `;
 
-function typeNext() {
-  if (lineI >= statusLinesTokens.length) { return blinkCursor(); }
+    window.addEventListener("load", () => {
+      // Po „Loading…“ ukazu hlavni obsah, takze jen naplnim text
+      statusTextEl.innerHTML = statusHTML;
+      // kurzor blika pres CSS — neni treba spoustet zadny JS timer
+    });
 
-  const line = statusLinesTokens[lineI];
-
-  // konec radku
-  if (tokenI >= line.length) {
-    statusTextEl.appendChild(document.createTextNode("\n"));
-    lineI++; tokenI = 0; charI = 0; currentSpan = null;
-    return setTimeout(typeNext, 150);
-  }
-
-  // novy token - vytvor span (nebo textNode)
-  const token = line[tokenI];
-  if (charI === 0) {
-    currentSpan = token.cls
-      ? Object.assign(document.createElement("span"), { className: token.cls })
-      : document.createTextNode("");
-    statusTextEl.appendChild(currentSpan);
-  }
-
-  // pridej dalsi znak do aktualniho tokenu
-  const ch = token.text.charAt(charI);
-  if (token.cls) {
-    currentSpan.appendChild(document.createTextNode(ch));
-  } else {
-    currentSpan.data += ch;
-  }
-
-  charI++;
-  if (charI >= token.text.length) { tokenI++; charI = 0; currentSpan = null; }
-  setTimeout(typeNext, 3);
-}
-
-function blinkCursor() {
-  setInterval(() => {
-    cursorEl.style.visibility = cursorEl.style.visibility === "hidden" ? "visible" : "hidden";
-  }, 500);
-}
-
-window.addEventListener("load", () => {
-  setTimeout(typeNext, 1500); // po „Loading…“
-});
 
   </script>
   
