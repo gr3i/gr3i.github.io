@@ -21,6 +21,13 @@
     border-radius: 8px;
     margin-top: 1rem;
   }
+
+  /* schovat bio na mobilech */
+  @media (max-width: 768px) {
+    .cat-bio {
+      display: none !important;
+    }
+  }
 </style>
 </head>
 <body>
@@ -33,38 +40,29 @@
   <div style="position: relative; display: flex; justify-content: center; font-family: 'Fira Code', monospace;">
 
   
-  <img src="images/cat.png" alt="Pirate Cat" style="max-width: 280px; border-radius: 12px; display: block;">
+    <img src="images/cat.png" alt="Pirate Cat" style="max-width: 280px; border-radius: 12px; display: block;">
 
-  
-  <div style="position: absolute; right: 300px; top: 50%; transform: translateY(-50%); display: flex; align-items: center; gap: 0.5rem;">
-    <svg width="40" height="14" viewBox="0 0 40 14" xmlns="http://www.w3.org/2000/svg" style="transform: rotate(180deg);">
+    
+    <div class="cat-bio" style="position: absolute; right: 300px; top: 50%; transform: translateY(-50%); display: flex; align-items: center; gap: 0.5rem;">
+      <svg width="40" height="14" viewBox="0 0 40 14" xmlns="http://www.w3.org/2000/svg" style="transform: rotate(180deg);">
         <line x1="0" y1="7" x2="28" y2="7" stroke="#60a5fa" stroke-width="8" stroke-linecap="round" />
         <polygon points="28,0 40,7 28,14" fill="#60a5fa" />
-    </svg>
+      </svg>
 
-    <div style="color: #f5f5f5; font-size: 0.85rem; text-align: left; line-height: 1.4; margin-left: 10px;">
-  <strong>Alias:</strong> Shadow Paw aka SP<br>
-  <strong>Role:</strong> Anti-Phishing Specialist<br>
-  <strong>Experience:</strong> 9 lives in cybersecurity<br>
-  <strong>Past:</strong> Former black hat (reformed 🐾)<br>
-  <strong>Hobbies:</strong> Staring at suspicious links
-</div>
-
-
-
+      <div style="color: #f5f5f5; font-size: 0.85rem; text-align: left; line-height: 1.4; margin-left: 10px;">
+        <strong>Alias:</strong> Shadow Paw aka SP<br>
+        <strong>Role:</strong> Anti-Phishing Specialist<br>
+        <strong>Experience:</strong> 9 lives in cybersecurity<br>
+        <strong>Past:</strong> Former black hat (reformed 🐾)<br>
+        <strong>Hobbies:</strong> Staring at suspicious links
+      </div>
+    </div>
 
   </div>
 
-</div>
-
-<p style="text-align: center; margin-top: 0.8rem;">
-  <a href="https://pointerpointer.com/" target="_blank" style="color:#60a5fa; text-decoration: underline;">trust me bro</a>
-</p>
-
-
-
-     
-
-
+  
+  <p style="text-align: center; margin-top: 0.8rem;">
+    <a href="https://pointerpointer.com/" target="_blank" style="color:#60a5fa; text-decoration: underline;">trust me bro</a>
+  </p>
 </body>
 </html>
