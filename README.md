@@ -1,5 +1,5 @@
 # My own webpage
-* You can find there something about me...
+* You can find there something about me..
 
 * Link: [gr3i.github.io](https://gr3i.github.io)
 
