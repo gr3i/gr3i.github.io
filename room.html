@@ -171,8 +171,8 @@
         return;
       }
 
-      marker.style.left = (100 - data.x) + "%";
-      marker.style.top  = (100 - data.y) + "%";
+      marker.style.left = (data.x) + "%";
+      marker.style.top  = (data.y) + "%";
       marker.style.display = "block";
 
       infoEl.innerHTML = `
