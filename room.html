@@ -149,14 +149,42 @@
 
     // souradnice mistnosti
     const ROOMS = {
-      e112: { x: 42, y: 37, floor: 3 },
       p381: { x: 83, y: 86, floor: 3 },
       p384: { x: 91, y: 83, floor: 3 },
       e337: { x: 33, y: 86, floor: 3 },
       e339: { x: 20, y: 86, floor: 3 },
       e341: { x: 12, y: 86, floor: 3 },
-      e342: { x: 3,  y: 86, floor: 3 }
-    };
+      e342: { x: 3,  y: 86, floor: 3 },
+
+      p283: { x: 96, y: 1, floor: 2 },
+      p284: { x: 83, y: 5, floor: 2 },
+      p285: { x: 80, y: 5, floor: 2 },
+      p286: { x: 77, y: 9, floor: 2 },
+      p287: { x: 74, y: 5, floor: 2 },
+      p288: { x: 70, y: 5, floor: 2 },
+      p292: { x: 62, y: 11, floor: 2 },
+      p289: { x: 62,  y: 19, floor: 2 },
+      p254: { x: 73,  y: 39, floor: 2 },
+      p257: { x: 79,  y: 39, floor: 2 },
+      p259: { x: 87,  y: 38, floor: 2 },
+      p262: { x: 84,  y: 76, floor: 2 },
+      p256: { x: 77,  y: 51, floor: 2 },
+      p255: { x: 71,  y: 51, floor: 2 },
+
+      e110: { x: 15,  y: 73, floor: 1 },
+      e109: { x: 24,  y: 73, floor: 1 },
+      e131: { x: 18,  y: 47, floor: 1 },
+      e135: { x: 24,  y: 47, floor: 1 },
+      p165: { x: 69,  y: 63, floor: 1 },
+      p164: { x: 79,  y: 64, floor: 1 },
+      p163: { x: 84,  y: 64, floor: 1 },
+      p160: { x: 84,  y: 36, floor: 1 },
+      p159: { x: 78,  y: 36, floor: 1 },
+      p158: { x: 72,  y: 36, floor: 1 },
+      p157: { x: 66,  y: 36, floor: 1 },
+
+
+	    };
 
     // nacteni parametru z URL
     function getRoomFromQuery() {
@@ -180,7 +208,6 @@
         marker.style.display = "none";
         return;
       }
-
       const data = ROOMS[roomCode];
 
       if (!data) {
@@ -214,4 +241,6 @@
   </script>
 </body>
 </html>
+
+
 
