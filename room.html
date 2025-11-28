@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mapa místností FP</title>
+  <title>Mapa místností</title>
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Inter:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
@@ -61,16 +61,20 @@
     }
 
     .marker {
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      background: red;
-      box-shadow: 0 0 10px rgba(255,0,0,0.9);
-      transform: translate(-50%, -50%);
-      pointer-events: none;
-      display: none; /* výchozí: skrytá */
+	position: absolute;
+  	transform: translate(-50%, -50%);
+  	pointer-events: none;
+  	display: none;
     }
+
+    .arrow-img {
+	width: 50px;
+	height: auto; 
+	transform: rotate(-10deg);	
+    }
+
+
+
 
     .info-panel {
       margin-top: 1rem;
@@ -121,7 +125,11 @@
     <div class="map-inner">
 	<!-- Nazev obrazku-->
       <img id="map-image" src="images/patro3.png" alt="Mapa budovy">
-      <div id="marker" class="marker"></div>
+<div id="marker" class="marker">
+  <img src="images/arrow.png" alt="arrow" class="arrow-img">
+</div>
+
+     
     </div>
 
     <div id="info" class="info-panel"></div>
@@ -136,10 +144,14 @@
     const ROOMS = {
       // TODO: Uprav souradnice podle skutecne polohy mistnosti
 	"e112": { x: 42, y: 37 },
-	"p381": { x: 87, y: 95},
-      // napr. pozdeji:
-      // "d105": { x: 63, y: 81 },
-      // "b201": { x: 12, y: 25 }
+	"p381": { x: 83, y: 86 },
+	"p384": { x: 91, y: 83 },
+	"e337": { x: 33, y: 86 },
+	"e339": { x: 20, y: 86 },
+	"e341": { x: 12, y: 86 },
+	"e342": { x: 3,  y: 86 },
+
+    
     };
 
     function getRoomFromQuery() {
@@ -179,8 +191,7 @@
         <span class="ok">Zobrazuji místnost <span class="code">${roomCode.toUpperCase()}</span>.</span>
       `;
 
-      // Pokud chci, aby tecka po X sekundach zmizela:
-      // setTimeout(() => { marker.style.display = "none"; }, 8000);
+     
     }
 
     const roomCode = getRoomFromQuery();
@@ -188,4 +199,5 @@
   </script>
 </body>
 </html>
+
 
