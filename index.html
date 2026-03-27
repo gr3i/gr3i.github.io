@@ -262,6 +262,77 @@
   right: 0;
   bottom: -0.6em;
 }
+.tldr-card {
+  width: 100%;
+  max-width: 900px;
+  background: linear-gradient(180deg, #171717 0%, #121212 100%);
+  border: 1px solid #2b2b2b;
+  border-radius: 16px;
+  padding: 1.4rem;
+  margin: 2rem auto 1rem;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.22);
+}
+
+.tldr-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.tldr-header h2 {
+  font-size: 1.15rem;
+  font-family: 'Fira Code', monospace;
+  color: #60a5fa;
+}
+
+.tldr-badge {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.85rem;
+  color: #9ca3af;
+  border: 1px solid #303030;
+  border-radius: 999px;
+  padding: 0.35rem 0.7rem;
+  background: #101010;
+}
+
+.tldr-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+.tldr-item {
+  background: #1b1b1b;
+  border: 1px solid #2f2f2f;
+  border-radius: 14px;
+  padding: 1rem;
+}
+
+.tldr-item-title {
+  display: inline-block;
+  margin-bottom: 0.45rem;
+  font-weight: 600;
+  color: #f5f5f5;
+}
+
+.tldr-item p {
+  color: #cfcfcf;
+  line-height: 1.55;
+}
+
+.tldr-item strong {
+  color: #60a5fa;
+}
+
+@media (max-width: 768px) {
+  .tldr-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 
   </style>
 </head>
@@ -279,6 +350,35 @@
       <h1>Hi, I'm <span id="nameDisplay">Dozby</span></h1>
       <img src="images/pfp.png" alt="Dozby Profile Picture">
     </div>
+
+<section class="tldr-card" aria-label="What I am doing right now in short">
+  <div class="tldr-header">
+    <h2>TL;DR — what I do right now</h2>
+    <span class="tldr-badge">student / builder / owner / sport</span>
+  </div>
+
+  <div class="tldr-grid">
+    <article class="tldr-item">
+      <span class="tldr-item-title">Studying</span>
+      <p>I currently study at <strong>FIT BUT</strong>.</p>
+    </article>
+
+    <article class="tldr-item">
+      <span class="tldr-item-title">Community</span>
+      <p>In my free time, I created a <strong>Discord server for students of VUT FP</strong>.</p>
+    </article>
+
+    <article class="tldr-item">
+      <span class="tldr-item-title">Role</span>
+      <p>I am currently the <strong>server owner</strong> and keep the community running in the background.</p>
+    </article>
+
+    <article class="tldr-item">
+      <span class="tldr-item-title">Behind the scenes</span>
+      <p>I also manage the <strong>Discord bot</strong> that is used on the server, and outside of that I like to <strong>do sports</strong>.</p>
+    </article>
+  </div>
+</section>
 
     <div class="articles" id="articles">
 <!--
@@ -481,7 +581,7 @@
 
     window.addEventListener("load", () => {
       // Po „Loading…“ ukazu hlavni obsah, takze jen naplnim text
-      statusTextEl.innerHTML = statusHTML;
+     	if (statusTextEl) statusTextEl.innerHTML = statusHTML; 
       // kurzor blika pres CSS — neni treba spoustet zadny JS timer
     });
 
