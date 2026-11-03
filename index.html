@@ -22,24 +22,11 @@
       overflow-x: hidden;
     }
 
-    .terminal {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background-color: black;
-      color: lime;
-      font-size: 1.5rem;
-      white-space: nowrap;
-      font-family: 'Fira Code', monospace;
-    }
-
     .main-content {
-      display: none;
+      display: flex;
       flex-direction: column;
       align-items: center;
       padding: 2rem;
-      animation: fadeIn 2s ease-in-out forwards;
     }
 
     .navbar {
@@ -346,7 +333,6 @@
   </style>
 </head>
 <body>
-  <div class="terminal" id="terminal"></div>
 
   <div class="main-content" id="mainContent">
     <div class="navbar">
@@ -525,37 +511,7 @@
   
 
   <script>
-    const terminal = document.getElementById('terminal');
-    const mainContent = document.getElementById('mainContent');
     const nameEl = document.getElementById('nameDisplay');
-  
-    const path = window.location.pathname;
-    const isIndex = path.endsWith("/") || path.endsWith("index.html");
-
-  
-    const text = 'Loading...';
-    let index = 0;
-  
-    function typeWriter() {
-      if (index < text.length) {
-        terminal.textContent += text.charAt(index);
-        index++;
-        setTimeout(typeWriter, 100);
-      } else {
-        setTimeout(() => {
-          terminal.style.display = 'none';
-          mainContent.style.display = 'flex';
-        }, 1000);
-      }
-    }
-  
-    if (isIndex) {
-      window.onload = typeWriter;
-    } else {
-      terminal.style.display = 'none';
-      mainContent.style.display = 'flex';
-    }
-  
     // GSAP efekt na jmene
     function startGSAPMorphOnHover() {
       gsap.registerPlugin(TextPlugin);
@@ -568,13 +524,7 @@
   
     nameEl.addEventListener("mouseenter", startGSAPMorphOnHover);
 
-   // Zobrazit az po "Loading..." nebo jine animaci – manualne
-    window.addEventListener('load', () => {
-      setTimeout(() => {
-        const wrapper = document.getElementById('treeWrapper');
-        wrapper.style.display = 'block';
-      }, 2000); 
-    });
+    
 
     function toggleTree() {
       const tree = document.getElementById('milestoneTree');
@@ -599,11 +549,7 @@
     <span class="token-kw">console</span>.<span class="token-fn">log</span>(<span class="token-str">"Ignore list: bots only"</span>);
     `;
 
-    window.addEventListener("load", () => {
-      // Po „Loading…“ ukazu hlavni obsah, takze jen naplnim text
-     	if (statusTextEl) statusTextEl.innerHTML = statusHTML; 
-      // kurzor blika pres CSS — neni treba spoustet zadny JS timer
-    });
+    if (statusTextEl) statusTextEl.innerHTML = statusHTML;
 
 
   </script>
