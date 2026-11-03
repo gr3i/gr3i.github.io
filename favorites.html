@@ -47,15 +47,7 @@
       text-align: center;
       font-size: 3rem;
       margin-top: 2rem;
-      animation: bluePulse 4s infinite;
-    }
-
-    @keyframes bluePulse {
-      0% { color: #60a5fa; }
-      25% { color: #3b82f6; }
-      50% { color: #2563eb; }
-      75% { color: #60a5fa; }
-      100% { color: #3b82f6; }
+      color: #3b82f6;
     }
 
     .chaos-grid {
@@ -72,20 +64,9 @@
       border: 3px dashed #60a5fa;
       padding: 1.5rem;
       transform: rotate(var(--rotate)) scale(1.02);
-      animation: glow 3s ease-in-out infinite alternate;
-      box-shadow: 0 0 10px rgba(96, 165, 250, 0.3);
+      box-shadow: 0 0 15px rgba(96, 165, 250, 0.5);
     }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0) rotate(var(--rotate)) scale(1.02); }
-      50% { transform: translateY(-10px) rotate(var(--rotate)) scale(1.02); }
-    }
-
-    @keyframes glow {
-      0% { box-shadow: 0 0 10px #60a5fa; }
-      100% { box-shadow: 0 0 20px #3b82f6; }
-    }
-
+    
     .chaos-box h2 {
       color: #91caff;
       margin-bottom: 0.8rem;
