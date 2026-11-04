@@ -54,15 +54,30 @@
 
     .profile {
       text-align: center;
-      margin-top: 2rem;
+      margin-top: 1.5rem;
+    }
+
+    .profile h1 {
+      font-size: clamp(2rem, 4vw, 2.5rem);
+      font-weight: 600;
+      letter-spacing: -0.035em;
+    }
+
+    .profile-subtitle {
+      margin-top: 0.55rem;
+      color: #aeb8c7;
+      font-size: 0.95rem;
+      line-height: 1.5;
     }
 
     .profile img {
-      width: 150px;
-      height: 150px;
+      display: block;
+      width: 140px;
+      height: 140px;
+      object-fit: cover;
       border-radius: 50%;
       border: 2px solid #60a5fa;
-      margin-top: 1rem;
+      margin: 1.1rem auto 0;
     }
 
     .articles {
@@ -71,19 +86,79 @@
       margin: 1rem auto 3rem;
     }
 
-    .article {
-      background: #1e1e1e;
-      padding: 1.5rem;
-      margin-bottom: 1.5rem;
-      border-left: 4px solid #60abfa;
-      transition: transform 0.3s, box-shadow 0.3s;;
+    /* Compact, static accordion section */
+    .articles {
+      background: #1a1a1a;
+      border: 1px solid #2b2b2b;
+      border-radius: 12px;
+      overflow: hidden;
     }
 
-    .article:hover {
-      transform: scale(1.01);
+    .detail-row + .detail-row,
+    .detail-row + .detail-link,
+    .detail-link + .detail-link {
+      border-top: 1px solid #303030;
     }
 
-    .article a {
+    .detail-row summary,
+    .detail-link {
+      position: relative;
+      display: block;
+      padding: 1.05rem 3rem 1.05rem 1.3rem;
+      cursor: pointer;
+      list-style: none;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .detail-row summary::-webkit-details-marker { display: none; }
+    .detail-row summary::marker { content: ''; }
+
+    .detail-title {
+      display: block;
+      font-size: 1.08rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .detail-subtitle {
+      display: block;
+      color: #aaa;
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+
+    .detail-row summary::after,
+    .detail-link::after {
+      position: absolute;
+      right: 1.4rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #9ba4b1;
+      font-size: 1.35rem;
+      font-weight: 400;
+    }
+
+    .detail-row summary::after { content: '+'; }
+    .detail-row[open] summary::after { content: '−'; }
+    .detail-link::after { content: '↗'; }
+
+    .detail-row summary:hover .detail-title,
+    .detail-link:hover .detail-title { color: #60a5fa; }
+
+    .detail-row summary:focus-visible,
+    .detail-link:focus-visible {
+      outline: 2px solid #60a5fa;
+      outline-offset: -2px;
+    }
+
+    .detail-content {
+      padding: 0 1.3rem 1.2rem;
+      color: #d1d1d1;
+      line-height: 1.6;
+    }
+
+    .detail-content a {
       color: #60a5fa;
       text-decoration: underline;
     }
@@ -253,11 +328,11 @@
 .tldr-card {
   width: 100%;
   max-width: 900px;
-  background: linear-gradient(180deg, #171717 0%, #121212 100%);
+  background: #171717;
   border: 1px solid #2b2b2b;
   border-radius: 16px;
   padding: 1.4rem;
-  margin: 2rem auto 1rem;
+  margin: 1.35rem auto 1rem;
   box-shadow: 0 12px 40px rgba(0,0,0,0.22);
 }
 
@@ -345,81 +420,85 @@
 
     <div class="profile">
       <h1>Hi, I'm <span id="nameDisplay">Dozby</span></h1>
+      <p class="profile-subtitle">Studying IT, building stuff &amp; connecting people.</p>
       <img src="images/pfp.png" alt="Dozby Profile Picture">
     </div>
 
 <section class="tldr-card" aria-label="What I am doing right now in short">
   <div class="tldr-header">
     <h2>TL;DR — what I do right now</h2>
-    <span class="tldr-badge">student / owner / sports</span>
+    <span class="tldr-badge">student / community / projects</span>
   </div>
 
   <div class="tldr-grid">
     <article class="tldr-item">
       <span class="tldr-item-title">Studying</span>
-      <p>I currently study at <strong>BUT FIT</strong>.</p>
+      <p>Studying at <strong>BUT FIT</strong>.</p>
     </article>
-
-   <article class="tldr-item">
-  <span class="tldr-item-title">Community</span>
-  <p>I created an unofficial Discord server for students of <strong>BUT FMB (VUT FP)</strong> and later established a connection with the faculty.</p>
-  <p>
-    <a href="https://discord.gg/TnDwKvSPHG" target="_blank" rel="noopener noreferrer">
-      Join the server
-    </a>
-  </p>
-  </article> 
 
     <article class="tldr-item">
-      <span class="tldr-item-title">Role</span>
-      <p>I am currently the <strong>server owner</strong> and keep the community running in the background.</p>
+      <span class="tldr-item-title">Community</span>
+      <p>Founder of an unofficial Discord community for <strong>BUT FMB (VUT FP)</strong> students, now connected with the faculty.</p>
+      <p><a href="https://discord.gg/TnDwKvSPHG" target="_blank" rel="noopener noreferrer">Join the server</a></p>
     </article>
 
-   <article class="tldr-item">
-  <span class="tldr-item-title">Behind the scenes</span>
-  <p>
-    I also manage
-    <a href="https://github.com/gr3i/BizzyBot" target="_blank" rel="noopener noreferrer">
-      <strong>BizzyBot</strong>
-    </a>,
-    the Discord bot used on the server, and outside of that I like to <strong>do sports</strong>. 
-  </p>
-</article> 
+    <article class="tldr-item">
+      <span class="tldr-item-title">Building</span>
+      <p>Working on personal projects, automation and <a href="https://github.com/gr3i/BizzyBot" target="_blank" rel="noopener noreferrer"><strong>BizzyBot</strong></a>.</p>
+    </article>
+
+    <article class="tldr-item">
+      <span class="tldr-item-title">Outside the screen</span>
+      <p>Sports, creative projects and whatever catches my interest.</p>
+    </article>
   </div>
 </section>
 
 
-      <div class="articles">
-      <div class="article">
-        <h2>Programming</h2>
-        <p>If you want to see my projects I did at school or what I do in my freetime, go on my <a href="https://github.com/gr3i" target="_blank">GitHub</a>.</p>
-      </div>
-      <div class="article">
-        <h2>Graphics Design</h2>
+      <section class="articles" aria-label="More about me">
+        <details class="detail-row">
+          <summary>
+            <span class="detail-title">Programming</span>
+            <span class="detail-subtitle">Projects, GitHub &amp; experiments</span>
+          </summary>
+          <div class="detail-content">
+            <p>If you want to see my projects I did at school or what I do in my freetime, go on my <a href="https://github.com/gr3i" target="_blank" rel="noopener noreferrer">GitHub</a>.</p>
+          </div>
+        </details>
 
-        <p class="spaced-paragraph">Over time, I’ve explored all kinds of creative projects. On my YouTube channel (<a href="https://www.youtube.com/@Dozby" target="_blank">@Dozby</a>), you can find my 100-hour drawing challenge alongside some AMVs.</p>
+        <details class="detail-row">
+          <summary>
+            <span class="detail-title">Graphics Design</span>
+            <span class="detail-subtitle">Digital art, animations &amp; Blender</span>
+          </summary>
+          <div class="detail-content">
+            <p class="spaced-paragraph">Over time, I’ve explored all kinds of creative projects. On my YouTube channel (<a href="https://www.youtube.com/@Dozby" target="_blank" rel="noopener noreferrer">@Dozby</a>), you can find my 100-hour drawing challenge alongside some AMVs.</p>
+            <p class="spaced-paragraph">My work also includes logo designs for Discord servers (some animated) and, for example, a video I made for my sister when she had to present her vision of a “bank of the future” for Česká spořitelna, plus plenty more.</p>
+            <p class="spaced-paragraph">When it comes to 3D, I learned the basics of Blender, mostly through tutorials and small experiments I shared privately on Discord. The urge to get better is still there, so I might return to it.</p>
+            <p class="spaced-paragraph">I’ve worked on many projects, but some ended up deleted or never published. They just didn’t feel good enough at the time.</p>
+          </div>
+        </details>
 
-        <p class="spaced-paragraph">My work also includes logo designs for Discord servers (some animated) and, for example, a video I made for my sister when she had to present her vision of a “bank of the future” for Česká spořitelna, plus plenty more.</p>
+        <details class="detail-row">
+          <summary>
+            <span class="detail-title">Sports</span>
+            <span class="detail-subtitle">From floorball to pretty much anything</span>
+          </summary>
+          <div class="detail-content">
+            <p>I played floorball for 7 years, and I’ve been doing street workout just for fun for almost a decade now. If you're curious about what I can (or used to) do, go to my <a href="https://www.facebook.com/zbynek.dohnalek" target="_blank" rel="noopener noreferrer">Facebook</a> or <a href="https://www.instagram.com/zbynek_dohnalek/" target="_blank" rel="noopener noreferrer">Instagram</a>.</p>
+          </div>
+        </details>
 
-        <p class="spaced-paragraph">When it comes to 3D, I learned the basics of Blender, mostly through tutorials and small experiments I shared privately on Discord. The urge to get better is still there, so I might return to it.</p>
+        <a class="detail-link" href="favorites.html">
+          <span class="detail-title">Favorites</span>
+          <span class="detail-subtitle">Bits and pieces I really like.</span>
+        </a>
 
-        <p class="spaced-paragraph">I’ve worked on many projects, but some ended up deleted or never published. They just didn’t feel good enough at the time.</p>
-
-        </div>
-        <div class="article">
-        <h2>Sports</h2>
-        <p>I played floorball for 7 years, and I’ve been doing street workout just for fun for almost a decade now. If you're curious about what I can (or used to) do, go to my <a href="https://www.facebook.com/zbynek.dohnalek" target="_blank">Facebook</a> or <a href="https://www.instagram.com/zbynek_dohnalek/" target="_blank">Instagram</a>.</p>
-
-      </div>
-      <div class="article">
-        <h2>Favorites</h2>
-        <p>Bits and pieces I really <a href="favorites.html" target="_self">like</a>.</p>
-      </div>
-      <div class="article">
-        <h2>Timeline</h2>
-        <p>My life's path in a <a href="timeline.html" target="_self">timeline</a> format.</p>
-      </div>
-    </div>
+        <a class="detail-link" href="timeline.html">
+          <span class="detail-title">Timeline</span>
+          <span class="detail-subtitle">My life's path in a timeline format.</span>
+        </a>
+      </section>
     
 
 <!--
