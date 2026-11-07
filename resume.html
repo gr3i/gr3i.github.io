@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Zbyněk Dohnálek's resume — education, projects and experience.">
+  <title>Resume – Dozby</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background: #0f0f0f;
+      color: #f5f5f5;
+      min-height: 100vh;
+    }
+
+    .navbar {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      background: #1a1a1a;
+      padding: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .navbar a {
+      color: #f5f5f5;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .navbar a:hover,
+    .navbar a:focus-visible { color: #60a5fa; }
+
+    main {
+      width: min(100% - 2.5rem, 850px);
+      margin: 3rem auto 4rem;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 5vw, 2.7rem);
+      letter-spacing: -0.035em;
+      font-weight: 600;
+    }
+
+    .intro {
+      color: #b8b8b8;
+      line-height: 1.65;
+      margin-top: 0.65rem;
+      margin-bottom: 2rem;
+    }
+
+    .toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.1rem;
+      margin-bottom: 1.3rem;
+    }
+
+    .language-switch {
+      display: inline-flex;
+      gap: 0.25rem;
+      padding: 0.25rem;
+      border: 1px solid #333;
+      background: #191919;
+      border-radius: 8px;
+    }
+
+    .language-switch button {
+      border: 0;
+      border-radius: 5px;
+      background: transparent;
+      color: #bbb;
+      padding: 0.65rem 1rem;
+      font: inherit;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+
+    .language-switch button[aria-pressed="true"] {
+      background: #27394c;
+      color: #eaf3ff;
+    }
+
+    .language-switch button:disabled {
+      color: #777;
+      cursor: not-allowed;
+    }
+
+    .actions { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+
+    .actions a {
+      color: #60a5fa;
+      font-size: 0.95rem;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      padding-block: 0.25rem;
+    }
+
+    .actions a:hover,
+    .actions a:focus-visible { border-bottom-color: currentColor; }
+
+    .language-switch button:focus-visible,
+    .actions a:focus-visible,
+    .back-link:focus-visible {
+      outline: 2px solid #60a5fa;
+      outline-offset: 3px;
+    }
+
+    .availability {
+      color: #999;
+      font-size: 0.85rem;
+      margin-bottom: 1rem;
+      min-height: 1.2em;
+    }
+
+    .preview {
+      width: 100%;
+      border: 1px solid #303030;
+      background: #1a1a1a;
+      border-radius: 8px;
+      padding: 0.65rem;
+    }
+
+    .preview iframe {
+      display: block;
+      width: 100%;
+      aspect-ratio: 210 / 297;
+      min-height: 520px;
+      background: white;
+      border: 0;
+      border-radius: 3px;
+    }
+
+    .preview-note {
+      margin-top: 1rem;
+      font-size: 0.875rem;
+      color: #9a9a9a;
+      line-height: 1.6;
+    }
+
+    .preview-note a { color: #60a5fa; }
+
+    .back-link {
+      display: inline-block;
+      color: #9a9a9a;
+      margin-top: 2rem;
+      text-decoration: none;
+    }
+
+    .back-link:hover { color: #60a5fa; }
+
+    @media (max-width: 620px) {
+      .navbar { gap: 1.1rem; }
+      main { width: min(100% - 1.5rem, 850px); margin-top: 2rem; }
+      .toolbar { align-items: flex-start; flex-direction: column; }
+      .preview { padding: 0.3rem; }
+      .preview iframe { min-height: 430px; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar" aria-label="Main navigation">
+    <a href="index.html">About Me</a>
+    <a href="story.html">My Story</a>
+    <a href="insights.html">Insights</a>
+  </nav>
+
+  <main>
+    <h1>Resume</h1>
+    <p class="intro">A quick overview of my education, projects and experience.</p>
+
+    <div class="toolbar">
+      <div class="language-switch" role="group" aria-label="Resume language">
+        <button id="czechButton" type="button" aria-pressed="true">Czech</button>
+        <button id="englishButton" type="button" aria-pressed="false" disabled title="English version coming soon">English · soon</button>
+      </div>
+      <div class="actions">
+        <a id="viewLink" href="CV.pdf" target="_blank" rel="noopener noreferrer">View PDF ↗</a>
+        <a id="downloadLink" href="CV.pdf" download="CV.pdf">Download PDF ↓</a>
+      </div>
+    </div>
+
+    <p class="availability" id="availability" role="status">English version coming soon.</p>
+
+    <div class="preview">
+      <iframe id="pdfPreview" title="Czech resume PDF preview" src="CV.pdf#view=FitH" loading="lazy"></iframe>
+    </div>
+    <p class="preview-note">If the preview is not supported by your browser, use <a id="fallbackLink" href="CV.pdf" target="_blank" rel="noopener noreferrer">View PDF</a> instead.</p>
+
+    <a class="back-link" href="index.html">← Back to About Me</a>
+  </main>
+
+  <script>
+    const documents = {
+      cs: { file: 'CV.pdf', label: 'Czech' },
+      en: { file: 'CV_EN.pdf', label: 'English' }
+    };
+
+    const czechButton = document.getElementById('czechButton');
+    const englishButton = document.getElementById('englishButton');
+    const preview = document.getElementById('pdfPreview');
+    const viewLink = document.getElementById('viewLink');
+    const downloadLink = document.getElementById('downloadLink');
+    const fallbackLink = document.getElementById('fallbackLink');
+    const availability = document.getElementById('availability');
+
+    function selectLanguage(language) {
+      const doc = documents[language];
+      czechButton.setAttribute('aria-pressed', String(language === 'cs'));
+      englishButton.setAttribute('aria-pressed', String(language === 'en'));
+      preview.src = doc.file + '#view=FitH';
+      preview.title = doc.label + ' resume PDF preview';
+      viewLink.href = doc.file;
+      fallbackLink.href = doc.file;
+      downloadLink.href = doc.file;
+      downloadLink.download = doc.file;
+      availability.textContent = language === 'cs' && englishButton.disabled
+        ? 'English version coming soon.'
+        : '';
+    }
+
+    czechButton.addEventListener('click', () => selectLanguage('cs'));
+    englishButton.addEventListener('click', () => selectLanguage('en'));
+
+    // The English button becomes available automatically after CV_EN.pdf is uploaded.
+    fetch(documents.en.file, { method: 'HEAD', cache: 'no-store' })
+      .then(response => {
+        if (response.ok && (response.headers.get('content-type') || '').toLowerCase().includes('pdf')) {
+          englishButton.disabled = false;
+          englishButton.textContent = 'English';
+          englishButton.removeAttribute('title');
+          availability.textContent = '';
+        }
+      })
+      .catch(() => {});
+  </script>
+</body>
+</html>
